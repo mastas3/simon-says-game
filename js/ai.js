@@ -4,7 +4,6 @@ var AI = function(_buttonsHistory, _buttons) {
       //computer chooses a new button
       var newButton = randomButton(_buttons);
       _buttonsHistory.push(newButton);
-      console.log(_buttonsHistory)
 
       //iterate over all buttons (including the newest one)
       var calls = [];
@@ -13,19 +12,23 @@ var AI = function(_buttonsHistory, _buttons) {
           var j = i;
           return function() {
             if(_buttonsHistory[j-1]) _buttonsHistory[j-1].className = 'gameBtn'; 
-            _buttonsHistory[j].onclick.call(_buttonsHistory[j]);
+            _buttonsHistory[j].onclick.apply(_buttonsHistory[j]);
             _buttonsHistory[j].className = 'gameBtnActive';
+            if(j==_buttonsHistory.length-1) {
+              _buttonsHistory[j].className = 'gameBtn';
+              return;
+            }
           }
         })();
         calls.push(f)
       }
       var idx = 1;
-      while(calls.length>=0) {
+      while(calls.length>0) {
         var call = calls.shift();
         setTimeout(call, idx * 500);
         idx++;
       }
-            
+
     } catch (error) {
       console.log('computersTurn:' + error)
     }

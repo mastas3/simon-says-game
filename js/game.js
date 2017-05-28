@@ -6,8 +6,8 @@ var Game = function() {
   buttonsContainer.className = 'buttonsContainer';
   document.getElementById('app').appendChild(buttonsContainer);
 
-  function updateButtonsHistory(color) {
-    buttonsHistory.push(color);
+  function updateButtonsHistory(btn) {
+    buttonsHistory.push(btn);
   }
 
   //test:
@@ -22,10 +22,6 @@ var Game = function() {
       buttons.forEach(function(button) {
         buttonsContainer.appendChild(button.domElem());
       });      
-      
-      buttonsContainer.onclick = function() {
-        console.log(buttonsHistory);
-      }
       
     } catch (error) {
       console.log('createButtons: ' + error);
