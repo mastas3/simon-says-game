@@ -1,0 +1,56 @@
+#app {
+  position: absolute;
+  left: 30%;
+}
+
+.gameBtn {
+  width: 200px;
+  height: 200px;
+  border: 15px solid black;
+  cursor: pointer;
+}
+
+.gameBtn:active {
+  background: #E040FB !important;
+}
+
+.gameBtnActive {
+  width: 200px;
+  height: 200px;
+  border: 15px solid black;
+  cursor: pointer;  
+  background: #E040FB !important;
+}
+
+.buttonsContainer {
+  display: flex;
+  width: 500px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonsContainer div:nth-of-type(1) {
+  border-radius: 150px 0 0 0;
+}
+
+.buttonsContainer div:nth-of-type(2) {
+  border-radius: 0 150px 0 0;
+}
+
+.buttonsContainer div:nth-of-type(3) {
+  border-radius: 0 0 0 150px;
+}
+
+.buttonsContainer div:nth-of-type(4) {
+  border-radius: 0 0 150px 0;
+}
+
+.controllers {
+  position: absolute;
+  background: white;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: 15px solid black;
+}
