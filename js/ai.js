@@ -1,7 +1,6 @@
 var AI = function(_buttonsHistory, _buttons) {
   this.play = function() {
     try {
-      //computer chooses a new button
       var newButton = randomButton(_buttons);
       _buttonsHistory.push(newButton);
 
@@ -14,23 +13,37 @@ var AI = function(_buttonsHistory, _buttons) {
             if(_buttonsHistory[j-1]) _buttonsHistory[j-1].className = 'gameBtn'; 
             _buttonsHistory[j].onclick.apply(_buttonsHistory[j]);
             _buttonsHistory[j].className = 'gameBtnActive';
-            if(j==_buttonsHistory.length-1) {
-              _buttonsHistory[j].className = 'gameBtn';
-              return;
-            }
-          }
+          };
         })();
         calls.push(f)
-      }
-      var idx = 1;
-      while(calls.length>0) {
-        var call = calls.shift();
-        setTimeout(call, idx * 500);
-        idx++;
-      }
+      };
+
+      var promise = new Promise(function(resolvePromise, rejectPromise) {
+        renderCalls(calls);
+        if(calls.length===0) {
+          resolvePromise(_buttons)
+        } else {
+          rejectPromise(Error('Promise error'))
+        };
+      });
+
+      promise.then(function(result) {
+
+      }, function(error) {
+        console.log('There was an error: ' + error)
+      });
 
     } catch (error) {
-      console.log('computersTurn:' + error)
+      console.log('ai.play: ' + error);
+    };
+  };
+
+  function renderCalls(calls) {
+    var idx = 1;
+    while(calls.length>0) {
+      var call = calls.shift();
+      setTimeout(call, idx * 500);
+      idx++;
     }
   }
 

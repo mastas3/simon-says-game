@@ -3,7 +3,7 @@ var Button = function(_color, _updateHistoryArr) {
     var button = document.createElement('DIV');
     button.className = 'gameBtn';
     button.style.background = _color;
-    button.id = Date.now();
+    button.id = Date.now() * Math.random() * 10;
     var sound = new Sound(_color);
 
     button.onclick = function(_e) {
@@ -14,6 +14,15 @@ var Button = function(_color, _updateHistoryArr) {
         }
       } catch (error) {
         console.log('Button onclick: ' + error);
+      }
+    }
+
+    this.addClickEvent = function() {
+      button.onClick = function(_e) {
+        sound.play();
+        if(_e) {
+          _updateHistoryArr(_e.target);
+        } 
       }
     }
 

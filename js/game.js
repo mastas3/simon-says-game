@@ -28,6 +28,16 @@ var Game = function() {
     }
   }
 
+  this.resetButtonsClass = function() {
+    Array.prototype.slice.apply(buttonsContainer.childNodes).forEach(function(elem) {
+        if(elem.id.match(/\d+/g)) {
+          elem.className = 'gameBtn';
+        }
+    })
+  }
+
+  window.resetButtonsClass = this.resetButtonsClass;
+
   this.init = function() {
     try {
       createButtons();
